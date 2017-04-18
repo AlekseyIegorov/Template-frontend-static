@@ -115,7 +115,7 @@ gulp.task('fontsBuild', function() {
 gulp.task('mediaBuild', function() {
   return gulp.src([
         pathSource + '/img/**/*.*', 
-        pathSource + '/video/**/*.*'
+        pathSource + '/media/**/*.*'
       ], { base: pathSource })
       .pipe(plumber())
       .pipe(gulp.dest(pathBuild));
