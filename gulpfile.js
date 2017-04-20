@@ -7,6 +7,8 @@ const gulp = require('gulp'),
   concat = require('gulp-concat'),
   minifyJS = require('gulp-minify'),
   minifyCSS = require('gulp-clean-css'),
+  // cssBase64 = require('gulp-css-base64'),
+  babel = require('gulp-babel'),
   del = require('del'),
   vinylPaths = require('vinyl-paths'),
   plumber = require('gulp-plumber'),
@@ -86,6 +88,9 @@ gulp.task('styleBuild', function() {
   return gulp.src(pathStylesOutput + '/**/*.css')
       .pipe(plumber())
       .pipe(concat('style.css'))
+      /*.pipe(cssBase64({
+        baseDir: pathSource + '/img',
+       }))*/
       .pipe(gulp.dest(pathBuildCSS))
       .pipe(concat('style-min.css'))
       .pipe(minifyCSS())
@@ -100,7 +105,10 @@ gulp.task('scriptBuild', function() {
         pathScriptsOutput + '/*.js'
       ])
       .pipe(plumber())
+      .pipe(babel({presets: ['es2015']}))
       .pipe(concat('script.js'))
+      .pipe(gulp.dest(pathBuildJS))
+      .pipe(concat('script-min.js'))
       .pipe(minifyJS())
       .pipe(gulp.dest(pathBuildJS));
 });
