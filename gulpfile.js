@@ -108,7 +108,6 @@ gulp.task('scriptBuild', function() {
       .pipe(babel({presets: ['es2015']}))
       .pipe(concat('script.js'))
       .pipe(gulp.dest(pathBuildJS))
-      .pipe(concat('script-min.js'))
       .pipe(minifyJS())
       .pipe(gulp.dest(pathBuildJS));
 });
