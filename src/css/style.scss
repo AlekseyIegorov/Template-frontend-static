@@ -1,10 +1,19 @@
 @charset "utf-8";
 
+/* UTILITY */
+@import "utility/functions.scss";
+
+/* COMMON */
 @import "common/variables.scss";
 @import "common/fonts.scss";
 @import "common/normalize.scss";
 @import "common/base.scss";
 @import "common/layout.scss";
+
+/* SHARED */
+// @import "shared/buttons.scss";
+// @import "shared/media.scss";
+// @import "shared/animations.scss";
 
 /* COMPONENTS */
 // @import "../components/component/component.scss";

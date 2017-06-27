@@ -1,14 +1,16 @@
 doctype html
 html(lang="ru-RU")
-	include ../metadata/head.pug
+  include ../metadata/head.pug
 
-	body.page_main
-		header.l_header
-			include ../components/nav/nav.pug
-		main.l_main
-			div.l_main-add
-			div.l_main-basic
-			aside.l_main-sidebar.theme__v1
-		footer.l_footer
+  body.mod_page__main
+    header.header
 
-		include ../metadata/scripts.pug
+    main.main
+      div.main__add
+      div.main__wrap
+        div.main__basic
+        aside.main__sidebar.mod_theme__v1
+
+    footer.footer
+
+    include ../metadata/scripts.pug

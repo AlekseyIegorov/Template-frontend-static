@@ -1,5 +1,5 @@
 ;(function() {
-	'use strict';
+  'use strict';
 
-	console.log('Hi this is common.js');
+  console.log('Hi this is common.js');
 })();
