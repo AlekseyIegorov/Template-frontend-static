@@ -4,13 +4,22 @@ html(lang="ru-RU")
 
   body.mod_page__main
     header.header
+      div.container
+        div.header__wrap
+          | Header
 
     main.main
       div.main__add
-      div.main__wrap
-        div.main__basic
-        aside.main__sidebar.mod_theme__v1
+      div.container
+        div.main__wrap
+          div.main__basic
+            | Basic
+          aside.main__sidebar.mod_theme__v1
+            | Sidebar
 
     footer.footer
+      div.container
+        div.footer__wrap
+          | Footer
 
     include ../metadata/scripts.pug

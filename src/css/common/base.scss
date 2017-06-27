@@ -1,44 +1,44 @@
-body { 
+body {
     min-width: $container_width;
-    background: $base_backgroundColor; 
+    background: $base_backgroundColor;
     color: $base_color;
     font-family: $opensansReg_fontFamily;
     font-size: $base_fontSize;
     line-height: $base_lineHeight;
 }
 
-a { 
-    color: $base_color__link; 
+a {
+    color: $base_color__link;
 
-    &.is_active { 
-        cursor: default; 
+    &.is_active {
+        cursor: default;
     }
 
     &:hover {
 
     }
-    &:active { 
-         
+    &:active {
+
     }
     &:visited {
 
     }
-    &:focus { 
-        // outline: thin dotted; 
+    &:focus {
+        // outline: thin dotted;
     }
 }
 
-h1, h2, h3, h4, h5, h6 { 
+h1, h2, h3, h4, h5, h6 {
     font-family: $opensansReg_fontFamily;
 }
 
 .container {
-    width: $container_width; 
-    margin-right: auto; 
-    margin-left: auto; 
+    width: $container_width;
+    margin-right: auto;
+    margin-left: auto;
     padding: 0 $container_padding__rl;
 
-    &.mod_width__auto {
+    &.mod_fluid {
         width: auto;
         padding: 0;
     }
@@ -46,9 +46,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .clearfix {
 
-    &:after { 
-        content: ""; 
-        display: table; 
-        clear: both; 
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
     }
 }
