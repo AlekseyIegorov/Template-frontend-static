@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 
     &.mod_fluid {
         width: auto;
-        padding: 0;
+        padding: 0 $container-fluid_padding__rl;
     }
 }
 
