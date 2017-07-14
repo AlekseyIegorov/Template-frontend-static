@@ -1,0 +1,11 @@
+$height_base: 800;
+$width_base: 1440;
+
+@function get-vw($target) {
+  $vw-context: ($width_base * 0.01) * 1px;
+  @return ($target / $vw-context) * 1vw;
+}
+@function get-vh($target) {
+  $vh-context: ($height_base * 0.01) * 1px;
+  @return ($target / $vh-context) * 1vh;
+}
