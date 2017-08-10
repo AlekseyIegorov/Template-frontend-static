@@ -28,11 +28,14 @@
     "gulp-minify": "0.0.15",
     "gulp-plumber": "^1.1.0",
     "gulp-prettify": "^0.5.0",
+    "gulp-haml": "^0.2.0",
     "gulp-pug": "^3.3.0",
     "gulp-sass": "^3.1.0",
     "gulp-watch": "^4.3.11",
     "pug": "^2.0.0-beta11",
     "run-sequence": "^1.2.2",
     "vinyl-paths": "^2.1.0"
+  },
+  "dependencies": {
   }
 }

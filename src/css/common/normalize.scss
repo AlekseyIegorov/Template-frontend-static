@@ -58,7 +58,7 @@ template {
     display: none;
 }
 
-a {
+a, button {
     background-color: transparent;
     -webkit-tap-highlight-color: transparent;
 }
@@ -280,7 +280,7 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0 0 .8em; 
-    font-weight: normal; 
-    line-height: 1.1; 
+    margin: 0 0 .8em;
+    font-weight: normal;
+    line-height: 1.1;
 }

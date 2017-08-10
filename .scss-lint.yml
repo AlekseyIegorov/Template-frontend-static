@@ -1,0 +1,11 @@
+linters:
+  PropertySortOrder:
+    enabled: false
+  SelectorDepth:
+    enabled: false
+  MergeableSelector:
+    enabled: false
+  NestingDepth:
+    enabled: false
+  QualifyingElement:
+    enabled: false

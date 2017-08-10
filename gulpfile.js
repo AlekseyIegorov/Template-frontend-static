@@ -1,6 +1,7 @@
 const gulp = require('gulp'),
   watch = require('gulp-watch'),
   pug = require('gulp-pug'),
+  haml = require('gulp-haml'),
   sass = require('gulp-sass'),
   prettify = require('gulp-prettify'),
   autoprefixer = require('gulp-autoprefixer'),
@@ -22,8 +23,11 @@ const pathSource = './src',
   pathBuildJS = `${pathBuild}/js`,
   pathViewsWatch = [
     `${pathSource}/views/**/*.pug`,
+    `${pathSource}/views/**/*.haml`,
     `${pathSource}/components/**/*.pug`,
+    `${pathSource}/components/**/*.haml`,
     `${pathSource}/metadata/**/*.pug`
+    `${pathSource}/metadata/**/*.haml`
   ],
   pathViewsInput = `${pathSource}/views/**/*.pug`,
   pathViewsOutput = `${pathSource}`,
@@ -49,6 +53,7 @@ gulp.task('viewCompailer', function () {
   return gulp.src(pathViewsInput)
       .pipe(plumber())
       .pipe(pug())
+      .pipe(haml())
       .pipe(prettify({
         indent_inner_html: false,
         indent_size: 4
@@ -100,7 +105,7 @@ gulp.task('styleBuild', function() {
 gulp.task('scriptBuild', function() {
   return gulp.src([
         pathScriptsOutput + '/libs/jquery.min.js',
-        pathScriptsOutput + '/libs/**/*.js', 
+        pathScriptsOutput + '/libs/**/*.js',
         pathScriptsOutput + '/plugins/**/*.js',
         pathScriptsOutput + '/*.js'
       ])
@@ -121,7 +126,7 @@ gulp.task('fontsBuild', function() {
 
 gulp.task('mediaBuild', function() {
   return gulp.src([
-        pathSource + '/img/**/*.*', 
+        pathSource + '/img/**/*.*',
         pathSource + '/media/**/*.*'
       ], { base: pathSource })
       .pipe(plumber())
@@ -145,13 +150,13 @@ gulp.task('includeMinFiles', function() {
 });
 
 gulp.task('init', [
-  'viewCompailer', 
-  'styleCompailer', 
+  'viewCompailer',
+  'styleCompailer',
   'scriptComponentsCompailer'
 ]);
 
 gulp.task('processBuild', [
-  'viewBuild', 
+  'viewBuild',
   'styleBuild',
   'scriptBuild',
   'fontsBuild',
@@ -160,9 +165,9 @@ gulp.task('processBuild', [
 
 gulp.task('build', function() {
   runSequence(
-    'init', 
-    'cleanBuild', 
-    'processBuild', 
+    'init',
+    'cleanBuild',
+    'processBuild',
     'includeMinFiles'
   );
 });
