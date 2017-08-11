@@ -1,17 +1,46 @@
 head
   title This is a new great site
   meta(charset="utf-8")
-  meta(name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui")
-  //- meta(name="format-detection" content="telephone=no")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0" id="viewport")
+  meta(name="format-detection" content="telephone=no")
 
-  //- link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
-  //- link(rel="apple-touch-icon" href="static/img/apple-touch-icon-precomposed.png")
-  //- link(rel="icon" href="static/img/favicon.png")
-  //- <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
-  //- meta(name="msapplication-TileColor" content="#000")
-  //- meta(name="msapplication-TileImage" content="static/img/tileicon.png")
+  // Social sharing
+  //- meta(content='Description', name='description')
+  //- meta(content="Facebook share title", property='og:title')
+  //- meta(content='Facebook share description', property='og:description')
+  //- meta(content='http://domen.com/', property='og:url')
+  //- meta(content='http://domen.com/img/share.jpg', property='og:image')
+  //- meta(content='image/jpeg', property='og:image:type')
+  //- meta(content='800', property='og:image:width')
+  //- meta(content='420', property='og:image:height')
+  //- meta(content='summary_large_image', property='twitter:card')
+  //- meta(content='@company', property='twitter:site')
+  //- meta(content='@company', property='twitter:creator')
+  //- meta(content="Twitter share title", property='twitter:title')
+  //- meta(content='Twitter share description', property='twitter:description')
+  //- meta(content='http://domen.com/img/share.jpg', property='twitter:image')
+  //- meta(content='http://domen.com/', property='twitter:domain')
 
-  //- <!--[if lt IE 9]><script src="static/js/helpers/IE9.js"></script><![endif]-->
+  // Favicons
+  link(rel='shortcut icon', type='image/x-icon', href='img/favicons/favicon.ico')
+  //- link(rel='shortcut icon', type='image/x-icon', href='img/favicons/favicon-16x16.png', sizes='16x16')
+  //- link(rel='shortcut icon', type='image/x-icon', href='img/favicons/favicon-32x32.png', sizes='32x32')
+  //- link(rel='shortcut icon', type='image/x-icon', href='img/favicons/favicon-96x96.png', sizes='96x96')
+  //- link(rel='shortcut icon', type='image/x-icon', href='img/favicons/favicon-194x194.png', sizes='194x194')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon.png')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-precomposed.png')
+  //- link(rel='mask-icon', href='img/favicons/safari-pinned-tab.svg', color='#f16522')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-57x57.png', sizes='57x57')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-60x60.png', sizes='60x60')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-72x72.png', sizes='72x72')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-76x76.png', sizes='76x76')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-114x114.png', sizes='114x114')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-120x120.png', sizes='120x120')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-144x144.png', sizes='144x144')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-152x152.png', sizes='152x152')
+  //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-180x180.png', sizes='180x180')
+  //- link(rel='manifest', href='img/favicons/manifest.json')
+  //- meta(name='msapplication-config', content='img/favicons/browserconfig.xml')
 
   <!-- build:css -->
   link(rel="stylesheet" href="css/style.css" media="all")
