@@ -3,9 +3,9 @@ head
   meta(charset="utf-8")
   meta(name="viewport" content="width=device-width, initial-scale=1.0" id="viewport")
   meta(name="format-detection" content="telephone=no")
+  meta(content='Description', name='description')
 
   // Social sharing
-  //- meta(content='Description', name='description')
   //- meta(content="Facebook share title", property='og:title')
   //- meta(content="website", property='og:type')
   //- meta(content='Facebook share description', property='og:description')
@@ -42,6 +42,24 @@ head
   //- link(rel='apple-touch-icon', type='image/x-icon', href='img/favicons/apple-touch-icon-180x180.png', sizes='180x180')
   //- link(rel='manifest', href='img/favicons/manifest.json')
   //- meta(name='msapplication-config', content='img/favicons/browserconfig.xml')
+
+  // Viewport changes for mobile
+  //- script.
+    setViewportWith();
+    addEventListener('orientationchange', function() {
+      setViewportWith();
+    }, false);
+
+    function setViewportWith() {
+      var viewport = document.getElementById('viewport');
+
+      if (window.orientation === 90 || window.orientation === -90 && window.innerWidth > 768) {
+        viewport.setAttribute('content','width=1024');
+      }
+      else {
+        viewport.setAttribute('content','width=device-width');
+      }
+    }
 
   <!-- build:css -->
   link(rel="stylesheet" href="css/style.css" media="all")
