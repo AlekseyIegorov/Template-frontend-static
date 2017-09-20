@@ -1,7 +1,6 @@
 const gulp = require('gulp'),
   watch = require('gulp-watch'),
   pug = require('gulp-pug'),
-  haml = require('gulp-haml'),
   sass = require('gulp-sass'),
   prettify = require('gulp-prettify'),
   autoprefixer = require('gulp-autoprefixer'),
@@ -17,17 +16,15 @@ const gulp = require('gulp'),
   htmlreplace = require('gulp-html-replace'),
   browserSync = require('browser-sync').create();
 
-const pathSource = './src',
+const pathRoot = './',
+  pathSource = './src',
   pathBuild = './build',
   pathBuildCSS = `${pathBuild}/css`,
   pathBuildJS = `${pathBuild}/js`,
   pathViewsWatch = [
     `${pathSource}/views/**/*.pug`,
-    `${pathSource}/views/**/*.haml`,
     `${pathSource}/components/**/*.pug`,
-    `${pathSource}/components/**/*.haml`,
     `${pathSource}/metadata/**/*.pug`
-    `${pathSource}/metadata/**/*.haml`
   ],
   pathViewsInput = `${pathSource}/views/**/*.pug`,
   pathViewsOutput = `${pathSource}`,
@@ -51,86 +48,103 @@ gulp.task('browserReload', function() {
 
 gulp.task('viewCompailer', function () {
   return gulp.src(pathViewsInput)
-      .pipe(plumber())
-      .pipe(pug())
-      .pipe(haml())
-      .pipe(prettify({
-        indent_inner_html: false,
-        indent_size: 4
-      }))
-      .pipe(gulp.dest(pathViewsOutput));
+    .pipe(plumber())
+    .pipe(pug())
+    .pipe(prettify({
+      indent_inner_html: false,
+      indent_size: 4
+    }))
+    .pipe(gulp.dest(pathViewsOutput));
 });
 
 gulp.task('styleCompailer', function () {
   return gulp.src(pathStylesInput)
-      .pipe(plumber())
-      .pipe(sass.sync())
-      .pipe(autoprefixer())
-      .pipe(gulp.dest(pathStylesOutput));
-      // .pipe(browserSync.stream()); // reload browser in style stream
+    .pipe(plumber())
+    .pipe(sass.sync())
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(pathStylesOutput));
+    // .pipe(browserSync.stream()); // reload browser in style stream
 });
 
 gulp.task('scriptComponentsCompailer', function () {
   return gulp.src(pathScriptsComponentsInput)
-      .pipe(plumber())
-      .pipe(concat('components.js'))
-      .pipe(gulp.dest(pathScriptsOutput));
+    .pipe(plumber())
+    .pipe(concat('components.js'))
+    .pipe(gulp.dest(pathScriptsOutput));
 });
 
 gulp.task('cleanBuild', function() {
   return gulp.src(pathBuild + '/*')
-      .pipe(plumber())
-      .pipe(vinylPaths(del));
+    .pipe(plumber())
+    .pipe(vinylPaths(del));
 });
 
 gulp.task('viewBuild', function() {
   return gulp.src(pathViewsOutput + '/*.html')
-      .pipe(plumber())
-      .pipe(gulp.dest(pathBuild));
+    .pipe(plumber())
+    .pipe(gulp.dest(pathBuild));
 });
 
 gulp.task('styleBuild', function() {
   return gulp.src(pathStylesOutput + '/**/*.css')
-      .pipe(plumber())
-      .pipe(concat('style.css'))
-      /*.pipe(cssBase64({
-        baseDir: pathSource + '/img',
-       }))*/
-      .pipe(gulp.dest(pathBuildCSS))
-      .pipe(concat('style-min.css'))
-      .pipe(minifyCSS())
-      .pipe(gulp.dest(pathBuildCSS));
+    .pipe(plumber())
+    .pipe(concat('style.css'))
+    /*.pipe(cssBase64({
+      baseDir: pathSource + '/img',
+    }))*/
+    .pipe(gulp.dest(pathBuildCSS))
+    .pipe(concat('style-min.css'))
+    .pipe(minifyCSS())
+    .pipe(gulp.dest(pathBuildCSS));
 });
 
 gulp.task('scriptBuild', function() {
   return gulp.src([
-        pathScriptsOutput + '/libs/jquery.min.js',
-        pathScriptsOutput + '/libs/**/*.js',
-        pathScriptsOutput + '/plugins/**/*.js',
-        pathScriptsOutput + '/*.js'
-      ])
-      .pipe(plumber())
-      .pipe(babel({presets: ['es2015']}))
-      .pipe(concat('script.js'))
-      .pipe(gulp.dest(pathBuildJS))
-      .pipe(minifyJS())
-      .pipe(gulp.dest(pathBuildJS));
+      pathScriptsOutput + '/libs/jquery.min.js',
+      pathScriptsOutput + '/libs/**/*.js',
+      pathScriptsOutput + '/plugins/**/*.js',
+      pathScriptsOutput + '/*.js'
+    ])
+    .pipe(plumber())
+    .pipe(babel({presets: ['es2015']}))
+    .pipe(concat('script.js'))
+    .pipe(gulp.dest(pathBuildJS))
+    .pipe(minifyJS())
+    .pipe(gulp.dest(pathBuildJS));
 });
 
 gulp.task('fontsBuild', function() {
   return gulp.src(pathStylesOutput + '/fonts/**/*.*',
-       { base: pathStylesOutput })
-      .pipe(plumber())
-      .pipe(gulp.dest(pathBuildCSS));
+    { base: pathStylesOutput })
+    .pipe(plumber())
+    .pipe(gulp.dest(pathBuildCSS));
 });
 
 gulp.task('mediaBuild', function() {
   return gulp.src([
-        pathSource + '/img/**/*.*',
-        pathSource + '/media/**/*.*'
-      ], { base: pathSource })
-      .pipe(plumber())
-      .pipe(gulp.dest(pathBuild));
+      pathSource + '/img/**/*.*',
+      pathSource + '/media/**/*.*'
+    ], { base: pathSource })
+    .pipe(plumber())
+    .pipe(gulp.dest(pathBuild));
+});
+
+gulp.task('filesBuild', function() {
+  return gulp.src([
+      pathSource + '/files/**/*.*'
+    ], { base: pathSource })
+    .pipe(plumber())
+    .pipe(gulp.dest(pathBuild));
+});
+
+gulp.task('rootBuild', function() {
+  return gulp.src([
+      pathSource + '/favicon.ico',
+      pathRoot + 'robots.txt',
+      pathRoot + 'sitemap.xml'
+    ])
+    .pipe(plumber())
+    .pipe(gulp.dest(pathBuild));
 });
 
 gulp.task('includeMinFiles', function() {
@@ -156,11 +170,13 @@ gulp.task('init', [
 ]);
 
 gulp.task('processBuild', [
+  'rootBuild',
   'viewBuild',
   'styleBuild',
   'scriptBuild',
   'fontsBuild',
-  'mediaBuild'
+  'mediaBuild',
+  'filesBuild'
 ]);
 
 gulp.task('build', function() {
