@@ -1,0 +1,15 @@
+@mixin calc-col-width($el-count, $el-offset) {
+    flex: 0 0 calc((100% / #{$el-count}) - #{$el-offset});
+    margin-right: calc(#{$el-offset} / 2);
+    margin-left: calc(#{$el-offset} / 2);
+
+    &:first-child,
+    &:nth-child(#{$el-count}n+1) {
+        margin-left: 0;
+    }
+
+    &:last-child,
+    &:nth-child(#{$el-count}n) {
+        margin-right: 0;
+    }   
+}
